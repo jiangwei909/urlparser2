@@ -1,3 +1,3 @@
 # url parser online
 
-Convert a URL to LLM-friendly input.
+URL Parser Online is a tool that converts URLs into inputs friendly to Large Language Models (LLMs).
