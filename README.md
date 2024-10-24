@@ -1,3 +1,3 @@
-# urlparser2
+# url parser online
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/jiangwei909/urlparser2)
+Convert a URL to LLM-friendly input.
