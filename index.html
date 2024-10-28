@@ -27,6 +27,12 @@
         margin-bottom: 10px;
         box-sizing: border-box;
       }
+      #save-btn {
+        font-size: 16px;
+        padding: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
       #url-input {
         width: 50%;
       }
@@ -106,6 +112,7 @@
     <div id="result">
       <textarea id="markdown-raw" readonly></textarea>
       <button id="copy-btn">Copy to clipboard</button>
+      <button id="save-btn">Save to file</button>
       <iframe id="markdown-rendered" sandbox></iframe>
     </div>
 
@@ -191,6 +198,29 @@
         setTimeout(() => {
           copyBtn.textContent = originalText;
         }, 1500);
+      });
+
+      document.getElementById('save-btn').addEventListener('click', function() {
+        const textarea = document.getElementById('markdown-raw');
+        const content = textarea.value;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const formatSelect = document.getElementById('format-select');
+        const format = formatSelect.value;
+
+        let fileExtension = 'md';
+        if (format === 'html') {
+          fileExtension = 'html';
+        } else if (format === 'text') {
+          fileExtension = 'txt';
+        }
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `llm.${fileExtension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
       });
     </script>
     <!-- Google tag (gtag.js) -->
